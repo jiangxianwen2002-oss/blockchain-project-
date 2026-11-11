@@ -74,7 +74,14 @@ Start everything with one command (Ctrl+C stops all):
 
 Each app has a 中文 / EN switch. Add an AI key in Console → AI settings (Anthropic, OpenAI-compatible or Zhipu GLM); without one, the assistant uses an offline rules mode with the same tools and contracts.
 
-To deploy a fresh copy: `USDC_ADDRESS=<MockUSDC> forge script script/DeployStage.s.sol --rpc-url sepolia --broadcast --verify`.
+Compile, test and deploy the contracts:
+```bash
+forge build                      # compile
+forge test                       # unit, fuzz and invariant tests (add --gas-report for gas usage)
+USDC_ADDRESS=0x18CaD1a9F7a97F73dA3EbA11779B37F045c8f42A \
+  forge script script/DeployStage.s.sol --rpc-url sepolia --broadcast --verify   # full, ready-to-demo deployment
+```
+The deploy script creates the vault, factory and five shops, funds the vault, sets the AI's limits and the whitelist, and verifies everything on Etherscan in one run.
 
 ## Tests
 
@@ -102,6 +109,12 @@ Full script: [`docs/DEMO.md`](docs/DEMO.md).
 - **Approvals need the owner's signature.** The owner key stays in MetaMask; typing "yes" in the chat approves nothing.
 - **Escrow and narrow arbitration.** Shops are paid only after delivery; the arbiter can only refund or release a disputed order.
 
+## Operations: pause and upgrades
+
+- **Pause**: the vault is `Pausable`. The owner can freeze all AI payments and approvals at once (Console → Emergency freeze) and can still withdraw while frozen.
+- **No upgrade proxy, by choice**: contracts are immutable. Users can read and verify exactly the code that holds their money, and there is no admin key that could swap the logic. Upgrades are done by deploying a new version: we replaced the vault once (v1 → v2, moving the funds across) and the shop contracts twice (v2 → v3 → the current factory-made shops).
+- **Limiting damage**: the AI's authorization expires (30 days by default) and can be revoked at any time; payees can be removed from the whitelist instantly.
+
 ## Limitations
 
 - Delivery is an off-chain fact (the oracle problem). Escrow, a dispute window and arbitration reduce the risk but can't remove it.
@@ -110,3 +123,29 @@ Full script: [`docs/DEMO.md`](docs/DEMO.md).
 - The daily limit resets at 00:00 UTC; a rolling 24-hour window would be better.
 
 Design and implementation notes (Chinese): [`docs/IMPLEMENTATION.md`](docs/IMPLEMENTATION.md).
+
+## Credits, licenses and AI disclosure
+
+This project is released under the [MIT License](LICENSE). Third-party code is used under its own license; all are permissive and compatible with MIT:
+
+| Library | Used for | License |
+|---|---|---|
+| OpenZeppelin Contracts v5.4.0 | `ERC20`, `Ownable`, `Pausable`, `ReentrancyGuard`, `SafeERC20`, `ERC165`, `ERC165Checker` | MIT |
+| Foundry / forge-std v1.17.0 | Build, tests, deployment scripts | MIT or Apache-2.0 |
+| viem, wagmi, TanStack Query | Ethereum access from the AI service and frontend | MIT |
+| React, Vite | Frontend | MIT |
+| lucide-react | Icons | ISC |
+| Anthropic TypeScript SDK | Claude API calls | Apache-2.0 |
+| tsx, dotenv | Running the TypeScript service, reading `.env` | MIT, BSD-2-Clause |
+
+**References (APA)**
+
+- Ethereum Foundation. (n.d.). *Ethereum developer tutorials*. https://ethereum.org/developers/tutorials/
+- OpenZeppelin. (2025). *OpenZeppelin Contracts* (Version 5.4.0) [Computer software]. https://github.com/OpenZeppelin/openzeppelin-contracts
+- Foundry contributors. (2025). *Foundry* [Computer software]. https://github.com/foundry-rs/foundry
+- Vogelsteller, F., & Buterin, V. (2015). *EIP-20: Token standard*. Ethereum Improvement Proposals. https://eips.ethereum.org/EIPS/eip-20
+- Reitwießner, C., Johnson, N., Vogelsteller, F., Baylina, J., Feldmeier, K., & Entriken, W. (2018). *EIP-165: Standard interface detection*. Ethereum Improvement Proposals. https://eips.ethereum.org/EIPS/eip-165
+- Minacori, V. (2020). *ERC-1363: Payable token*. Ethereum Improvement Proposals. https://eips.ethereum.org/EIPS/eip-1363
+- x402 Foundation. (2026). *x402 payment protocol documentation*. https://docs.x402.org
+
+**AI-assisted development.** Parts of the code and documentation were written with the help of an AI coding assistant (Claude, by Anthropic). The team reviewed the generated code and checked it with the unit, fuzz and invariant tests, Slither, and the end-to-end tests on Sepolia described above. We also checked that every dependency's license is compatible with MIT.
