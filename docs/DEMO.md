@@ -86,7 +86,7 @@
 ```bash
 cd agent && npm run evidence
 ```
-这个命令会从链上读取所有数据，生成 [`docs/EVIDENCE.md`](EVIDENCE.md)，内容包括：
+这个命令（`AV_ENV=rehearsal npm run evidence`）会从练习环境的链上读取所有数据，生成 [`docs/EVIDENCE.md`](EVIDENCE.md)。报告用的证据以练习环境为准，正式环境只用于上台演示。内容包括：
 - 合约地址及已验证源码的链接
 - 余额对账表，以及资金守恒检查（合计 = 存入 − 取出）
 - 每个订单每一步的交易、区块和实际转账

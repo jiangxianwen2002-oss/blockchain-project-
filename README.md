@@ -47,7 +47,7 @@ Solidity 0.8.28 with OpenZeppelin v5, in `src/`.
 | MockUSDC | [`0x18CaD1a9F7a97F73dA3EbA11779B37F045c8f42A`](https://sepolia.etherscan.io/address/0x18CaD1a9F7a97F73dA3EbA11779B37F045c8f42A#code) |
 | Shops | [food](https://sepolia.etherscan.io/address/0xAbd934d535418dc79eC837236bd11F274d54d69D#code), [tea & coffee](https://sepolia.etherscan.io/address/0x1500CB21480c6c22B273de787758B20245625116#code), [rides](https://sepolia.etherscan.io/address/0xB08Bb122c6f6d535bEE78Dc49983160007074da8#code) (whitelisted) · [scam shop](https://sepolia.etherscan.io/address/0xB23891e2419A635594a59cAC7BF62dBb025a5298#code) (not whitelisted) · [corner store](https://sepolia.etherscan.io/address/0x96465E99Baf51BE72af31B0FF2eb812EdC1d9426#code) (imported live in the demo) |
 
-These are the clean **stage** deployment used for the live demo. A second **rehearsal** deployment holds the development and test history (`AV_ENV=rehearsal`). Full list: [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
+These are the clean **stage** deployment, used only for the live demo. All development and testing ran on a second **rehearsal** deployment of the same code (vault [`0x301ee590…83b1`](https://sepolia.etherscan.io/address/0x301ee5902258D0548A23Ac24899a3DC1EAE283b1#code), `AV_ENV=rehearsal`), and the evidence below comes from it. Full list: [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
 
 ## Quick start
 
@@ -84,7 +84,7 @@ To deploy a fresh copy: `USDC_ADDRESS=<MockUSDC> forge script script/DeployStage
 | Static analysis | `slither .` | Only `block.timestamp` notes ([report](docs/slither-report.txt)) |
 | End-to-end on Sepolia (every signed action, real transactions) | `AV_ENV=rehearsal npm run e2e` | **39/39** ([results](docs/E2E-RESULTS.md)) |
 | Real LLM (tool use, no unwanted orders, scam shop) | `npm run llm-test -- --all` | Passed (Zhipu GLM) |
-| On-chain evidence | `npm run evidence` | Funds conserved ✅, attacker received 0 ([report](docs/EVIDENCE.md)) |
+| On-chain evidence: every order, failed scam payment, approval, refund and ruling, with Etherscan links | `AV_ENV=rehearsal npm run evidence` | Funds conserved ✅, attacker received 0 ([report](docs/EVIDENCE.md)) |
 
 ## Demo
 

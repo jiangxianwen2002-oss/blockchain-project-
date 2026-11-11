@@ -1,4 +1,6 @@
-// 生成链上证据报告：npm run evidence  → docs/EVIDENCE.md（练习环境：AV_ENV=rehearsal → docs/EVIDENCE-rehearsal.md）
+// 生成链上证据报告。证据以练习环境为准（开发和全部测试都在这套部署上）：
+//   AV_ENV=rehearsal npm run evidence → docs/EVIDENCE.md
+// 正式环境只用于上台演示；需要时也能生成一份 docs/EVIDENCE-stage.md（不提交）
 // 所有数据都直接从 Sepolia 读取（合约状态 + 事件 + 交易回执），不依赖本地的任何记录。
 // 报告里每个数字都带 Etherscan 链接，老师可以逐条核对。
 import { writeFileSync } from "node:fs";
@@ -106,6 +108,7 @@ async function main() {
   p("# 链上证据报告（自动生成）");
   p();
   p(`> 由 \`npm run evidence\` 在 ${now.toISOString()} 生成，读取的是 Sepolia **区块 #${block}** 时的链上状态。`);
+  p(`> 部署：${AV_ENV === "rehearsal" ? "练习环境（开发和测试用，包含全部测试交易）" : "正式演示环境"}，金库 \`${VAULT}\`。`);
   p("> 所有数据都直接来自链上（合约状态、事件、交易回执），不依赖本地记录。每个地址和交易都附 Etherscan 链接，可以逐条核对。");
   p();
 
@@ -263,8 +266,8 @@ async function main() {
   p("- v1 中故意上链留档的失败交易（AI 付款给攻击者 → MerchantNotAllowed）：https://sepolia.etherscan.io/tx/0x9fcaed0f12d5f0ae91eaf540c3dcc82457535083515d3268818d865dd5463d87");
   p();
 
-  // 正式环境 → docs/EVIDENCE.md；练习环境 → docs/EVIDENCE-rehearsal.md
-  const file = path.join(ROOT, AV_ENV === "stage" ? "docs/EVIDENCE.md" : "docs/EVIDENCE-rehearsal.md");
+  // 练习环境 → docs/EVIDENCE.md（报告用的证据）；正式环境 → docs/EVIDENCE-stage.md（只在本地看，不提交）
+  const file = path.join(ROOT, AV_ENV === "rehearsal" ? "docs/EVIDENCE.md" : "docs/EVIDENCE-stage.md");
   writeFileSync(file, out.join("\n"));
   console.log(`已生成 ${file}（区块 #${block}）`);
   console.log(`资金守恒：${conserved ? "✅" : "❌"}  商家账本：${allOk ? "✅" : "❌"}  攻击者余额：${f(attackerBal)}`);

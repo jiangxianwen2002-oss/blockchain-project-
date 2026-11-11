@@ -76,7 +76,7 @@ npm run owner -- unpause        # 解冻
 | `src/openai.ts` | OpenAI 协议的 agent 循环（兼容 DeepSeek、通义千问、Ollama 等），在控制台 → AI 设置里切换 |
 | `src/ucp.ts` | 外部平台驱动：UCP 风格结账 + x402 付款，AI 的工具按商家类型自动走这条通道 |
 | `src/cloudeats.ts` | 模拟的外部外卖平台：402 付款要求、链上核实收款、退款 |
-| `src/evidence.ts` | `npm run evidence`：从链上生成证据文档 `docs/EVIDENCE.md` |
+| `src/evidence.ts` | `AV_ENV=rehearsal npm run evidence`：从练习环境的链上数据生成证据文档 `docs/EVIDENCE.md` |
 | `src/scenarios.ts` | 4 个固定剧本 |
 | `src/owner.ts` | 金库主人命令行 |
 | `src/generated/abi.ts` | 由 `node scripts/export-abi.mjs` 从 Foundry 编译产物生成 |

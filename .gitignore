@@ -13,3 +13,6 @@ agent/*.local.json
 broadcast/**/dry-run/
 broadcast/**/run-[0-9]*.json
 broadcast/**/*.lock
+
+# 正式演示环境的证据报告只在本地看（报告用的证据是练习环境的 docs/EVIDENCE.md）
+docs/EVIDENCE-stage.md

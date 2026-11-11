@@ -3,8 +3,8 @@
 ## 两套环境
 | 环境 | 用途 | 配置文件 | 启动方式 |
 |---|---|---|---|
-| **正式演示（stage）** | 上台演示、报告截图、老师核对。全新部署，没有任何测试记录 | `deployments/stage.json` | 默认 |
-| **练习（rehearsal）** | 自己练习演示流程、跑端到端测试。下面 v1～v3 的全部合约和测试记录都在这里 | `deployments/rehearsal.json` | 命令前加 `AV_ENV=rehearsal` |
+| **正式演示（stage）** | 只用于上台演示。全新部署，从干净的状态开始 | `deployments/stage.json` | 默认 |
+| **练习（rehearsal）** | 开发、全部测试、练习演示。下面 v1～v3 的全部合约和测试记录都在这里；**报告里的链上证据（`docs/EVIDENCE.md`、`docs/E2E-RESULTS.md`）都来自这套** | `deployments/rehearsal.json` | 命令前加 `AV_ENV=rehearsal` |
 
 两套环境共用同一个 MockUSDC 和同一批测试钱包（主人、AI 代理、商家、平台仲裁人、云间外卖收款地址），金库、工厂和商家合约各自独立。练习环境的标签标题会带"[练习]"。端到端测试脚本 `npm run e2e` 只允许在练习环境运行。
 
