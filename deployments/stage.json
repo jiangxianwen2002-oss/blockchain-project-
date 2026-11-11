@@ -1,0 +1,81 @@
+{
+  "chainId": 11155111,
+  "network": "sepolia",
+  "deployedAt": "2026-11-09",
+  "contracts": {
+    "AgentVault": "0xDcB3853dbf1A9c0B53853d1C2EE84bceA53C1442",
+    "MockUSDC": "0x18CaD1a9F7a97F73dA3EbA11779B37F045c8f42A",
+    "ShopFactory": "0xBD10670313A082372Dc69B34b6c0d33d091cFfc2"
+  },
+  "roles": {
+    "owner": "0x1Db001e481B4C3706F52455cFf39Fe05f1caC305",
+    "agent": "0x9Da8FA6692614E0Aadc9CabC59292A0609Ef73D1",
+    "merchant": "0x1Cb9CEB6B28866803E97C74a1c3055630D0143dc",
+    "platform": "0xA8193B2eA795Fa1254BE619d5b741daEbe5948D2"
+  },
+  "merchants": [
+    {
+      "id": "food",
+      "name": "饭点到·家常小厨",
+      "emoji": "🍱",
+      "category": "外卖",
+      "eta": "30 分钟送达",
+      "address": "0xAbd934d535418dc79eC837236bd11F274d54d69D"
+    },
+    {
+      "id": "tea",
+      "name": "一点甜·奶茶咖啡",
+      "emoji": "🧋",
+      "category": "奶茶咖啡",
+      "eta": "20 分钟送达",
+      "address": "0x1500CB21480c6c22B273de787758B20245625116"
+    },
+    {
+      "id": "ride",
+      "name": "快到·打车",
+      "emoji": "🚕",
+      "category": "打车",
+      "eta": "司机约 3 分钟到达",
+      "address": "0xB08Bb122c6f6d535bEE78Dc49983160007074da8"
+    }
+  ],
+  "attacker": "0xBAD0000000000000000000000000000000000BAD",
+  "deployBlock": 12098155,
+  "legacyMerchants": [],
+  "untrustedShops": [
+    {
+      "id": "deals",
+      "name": "天天特价·首单1折",
+      "emoji": "🔥",
+      "category": "外卖（未审核新店）",
+      "eta": "15 分钟送达",
+      "address": "0xB23891e2419A635594a59cAC7BF62dBb025a5298"
+    }
+  ],
+  "version": 4,
+  "confirmWindowSeconds": 180,
+  "legacyShops": [],
+  "shopsDeployBlock": 12098155,
+  "otherShops": [
+    {
+      "id": "store",
+      "name": "小卖部·便利店",
+      "emoji": "",
+      "category": "便利店",
+      "eta": "10 分钟送达",
+      "address": "0x96465E99Baf51BE72af31B0FF2eb812EdC1d9426"
+    }
+  ],
+  "externalPlatforms": [
+    {
+      "id": "cloudeats",
+      "name": "云间外卖 CloudEats",
+      "protocol": "UCP 风格结账 + x402 付款（模拟平台）",
+      "endpoint": "http://127.0.0.1:8788",
+      "payTo": "0x861A5564efB8CF5468A41696dDA537288B125bF4",
+      "note": "本地模拟的外部外卖平台，见 agent/src/cloudeats.ts；白名单里登记的是它的 x402 收款地址"
+    }
+  ],
+  "environment": "stage",
+  "note": "正式演示环境：全新部署（DeployStage.s.sol），沿用同一个 MockUSDC 和测试钱包。练习环境见 rehearsal.json"
+}

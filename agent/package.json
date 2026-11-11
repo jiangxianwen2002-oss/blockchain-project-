@@ -1,0 +1,30 @@
+{
+  "name": "agentvault-agent",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "AgentVault 的链下 AI 代理：LLM 负责决策，合约负责限额",
+  "scripts": {
+    "agent": "tsx src/index.ts",
+    "scenario": "tsx src/scenarios.ts",
+    "owner": "tsx src/owner.ts",
+    "status": "tsx src/owner.ts status",
+    "typecheck": "tsc --noEmit",
+    "server": "tsx src/server.ts",
+    "evidence": "tsx src/evidence.ts",
+    "platform": "tsx src/platform.ts",
+    "cloudeats": "tsx src/cloudeats.ts",
+    "llm-test": "tsx src/llm-test.ts",
+    "e2e": "tsx src/e2e.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.6.0",
+    "dotenv": "^18.0.9",
+    "viem": "^2.57.16"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "chainId": 11155111,
+  "network": "sepolia",
+  "deployedAt": "2026-11-08",
+  "contracts": {
+    "AgentVault": "0x301ee5902258D0548A23Ac24899a3DC1EAE283b1",
+    "MockUSDC": "0x18CaD1a9F7a97F73dA3EbA11779B37F045c8f42A",
+    "ShopFactory": "0xEc1Fe188A67a9fc109a7deAb6402d29EFB4a2836"
+  },
+  "roles": {
+    "owner": "0x1Db001e481B4C3706F52455cFf39Fe05f1caC305",
+    "agent": "0x9Da8FA6692614E0Aadc9CabC59292A0609Ef73D1",
+    "merchant": "0x1Cb9CEB6B28866803E97C74a1c3055630D0143dc",
+    "platform": "0xA8193B2eA795Fa1254BE619d5b741daEbe5948D2"
+  },
+  "merchants": [
+    {
+      "id": "food",
+      "name": "饭点到·家常小厨",
+      "emoji": "🍱",
+      "category": "外卖",
+      "eta": "30 分钟送达",
+      "address": "0x5AC252E353b5958853634D449F96Dd74D2277C54"
+    },
+    {
+      "id": "tea",
+      "name": "一点甜·奶茶咖啡",
+      "emoji": "🧋",
+      "category": "奶茶咖啡",
+      "eta": "20 分钟送达",
+      "address": "0xda233B6DD30B9B81aaA281612201673fAa71EF25"
+    },
+    {
+      "id": "ride",
+      "name": "快到·打车",
+      "emoji": "🚕",
+      "category": "打车",
+      "eta": "司机约 3 分钟到达",
+      "address": "0xFA59Fb53d58FdA38B4e267E5B2CF9CBca5626721"
+    }
+  ],
+  "attacker": "0xBAD0000000000000000000000000000000000BAD",
+  "deployBlock": 12089388,
+  "legacyMerchants": [
+    {
+      "id": "openapi",
+      "name": "OpenAPI Credits",
+      "address": "0x589430fa58d649A0f9bdA1352334D04E1818AaC1"
+    },
+    {
+      "id": "gpu",
+      "name": "GPU Cloud",
+      "address": "0xC4B19F5a50173826be47398c9A5b24D871b9BCaA"
+    },
+    {
+      "id": "data",
+      "name": "Data Shop",
+      "address": "0xEe4f17E38faCb64004fEceBBEA8DA9CFf27E42a8"
+    },
+    {
+      "id": "food-eoa",
+      "name": "饭点到·家常小厨（v1 收款地址）",
+      "address": "0x20BDbfeb1c874388305A40c1165C706Ff7D10614"
+    },
+    {
+      "id": "tea-eoa",
+      "name": "一点甜·奶茶咖啡（v1 收款地址）",
+      "address": "0xd886479Ec3089E9044AD20C2f3ddFA9B339dd535"
+    },
+    {
+      "id": "ride-eoa",
+      "name": "快到·打车（v1 收款地址）",
+      "address": "0xdCA1EC6d943D6E4C58aec973bD0Fc99B6ab00DA1"
+    },
+    {
+      "id": "deals-eoa",
+      "name": "天天特价·首单1折（v1 收款地址）",
+      "address": "0x4625fc9CEfF1D6033F027A9763ee623a23b3444A"
+    }
+  ],
+  "untrustedShops": [
+    {
+      "id": "deals",
+      "name": "天天特价·首单1折",
+      "emoji": "🔥",
+      "category": "外卖（未审核新店）",
+      "eta": "15 分钟送达",
+      "address": "0x5d2D8BA46fb583a4942cf3A6c6f9A10b79055015"
+    }
+  ],
+  "version": 3,
+  "confirmWindowSeconds": 180,
+  "legacy": {
+    "v1": {
+      "AgentVault": "0x51f486f1393F61d2b05BFc9a1937e951b092502b",
+      "deployBlock": 12087881,
+      "note": "v1 金库，已取空并收回代理授权"
+    }
+  },
+  "legacyShops": [
+    {
+      "id": "food-v2",
+      "name": "饭点到·家常小厨（v2 旧合约）",
+      "emoji": "🍱",
+      "category": "外卖",
+      "eta": "30 分钟送达",
+      "address": "0x0124Af75BA693bb41d7E9b7EFA8e4Ba48b940A93"
+    },
+    {
+      "id": "tea-v2",
+      "name": "一点甜·奶茶咖啡（v2 旧合约）",
+      "emoji": "🧋",
+      "category": "奶茶咖啡",
+      "eta": "20 分钟送达",
+      "address": "0x1b19d4738F378856d3a7C81bbc584F9a7186cF56"
+    },
+    {
+      "id": "ride-v2",
+      "name": "快到·打车（v2 旧合约）",
+      "emoji": "🚕",
+      "category": "打车",
+      "eta": "司机约 3 分钟到达",
+      "address": "0x10Ccb03A7B9f81F4cd3C65A4DC72d9845de58cF2"
+    },
+    {
+      "id": "deals-v2",
+      "name": "天天特价·首单1折（v2 旧合约）",
+      "emoji": "🔥",
+      "category": "外卖（未审核新店）",
+      "eta": "15 分钟送达",
+      "address": "0x28951119aC131017D998ec05c00a0e4465b4adb5"
+    },
+    {
+      "id": "store-v2",
+      "name": "小卖部·便利店（v2 旧合约）",
+      "emoji": "",
+      "category": "便利店",
+      "eta": "",
+      "address": "0x02D0D26091b6f0695337076c0524A0aBFab50D44"
+    }
+  ],
+  "shopsDeployBlock": 12091552,
+  "otherShops": [
+    {
+      "id": "store",
+      "name": "小卖部·便利店",
+      "emoji": "",
+      "category": "便利店",
+      "eta": "10 分钟送达",
+      "address": "0xbEb6F56491f80b9df5532342F2e5Ad2D43cd7c65"
+    }
+  ],
+  "externalPlatforms": [
+    {
+      "id": "cloudeats",
+      "name": "云间外卖 CloudEats",
+      "protocol": "UCP 风格结账 + x402 付款（模拟平台）",
+      "endpoint": "http://127.0.0.1:8788",
+      "payTo": "0x861A5564efB8CF5468A41696dDA537288B125bF4",
+      "note": "本地模拟的外部外卖平台，见 agent/src/cloudeats.ts；白名单里登记的是它的 x402 收款地址"
+    }
+  ],
+  "environment": "rehearsal",
+  "note": "练习环境：开发和测试用的那套合约（有大量测试记录）。正式演示用 stage.json"
+}

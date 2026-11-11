@@ -1,0 +1,132 @@
+/* 用户端：手机优先的单列聊天界面。桌面上居中显示成手机宽度 */
+body { background: var(--bg); }
+@media (min-width: 560px) {
+  body { background: var(--surface-2); }
+}
+
+.phone {
+  max-width: 480px; margin: 0 auto; min-height: 100dvh;
+  display: flex; flex-direction: column; background: var(--bg);
+}
+@media (min-width: 560px) {
+  .phone { border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+}
+
+.bar {
+  position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center;
+  height: 52px; padding: 0 16px; background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: saturate(1.5) blur(12px); -webkit-backdrop-filter: saturate(1.5) blur(12px);
+}
+.bar-brand { display: flex; align-items: center; gap: 8px; font-weight: 600; letter-spacing: -0.01em; }
+.icon-btn {
+  width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+  border: none; background: transparent; color: var(--text-2); cursor: pointer;
+}
+.icon-btn:hover { background: var(--surface-2); }
+
+.wallet-strip { padding: 4px 16px 12px; display: flex; flex-direction: column; gap: 8px; }
+.wallet-line { display: flex; align-items: baseline; gap: 6px; font-size: 13px; }
+.wallet-line svg { align-self: center; }
+.wallet-line strong { font-size: 15px; font-weight: 600; color: var(--text); }
+.mode-dot { width: 7px; height: 7px; border-radius: 50%; margin-left: auto; align-self: center; background: var(--text-3); }
+.mode-ai { background: var(--ok); }
+.mode-rules { background: var(--warn); }
+.mode-offline-server { background: var(--bad); }
+.paused-note { font-size: 12.5px; color: var(--bad); }
+
+.thread { flex: 1; padding: 8px 16px 16px; display: flex; flex-direction: column; gap: 18px; }
+
+.hello { padding: 12vh 4px 0; display: flex; flex-direction: column; gap: 10px; }
+.hello h1 { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; }
+.hello p { font-size: 14px; max-width: 32em; }
+.suggest { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+.suggest button {
+  display: flex; align-items: center; gap: 10px; text-align: left; width: 100%;
+  padding: 12px 14px; border-radius: var(--r); border: 1px solid var(--border);
+  background: var(--surface); color: var(--text); font: 14px var(--font); cursor: pointer;
+  transition: border-color 0.15s;
+}
+.suggest button svg { color: var(--text-3); flex: none; }
+.suggest button:hover:not(:disabled) { border-color: var(--border-strong); }
+
+.msg-user {
+  align-self: flex-end; max-width: 82%; padding: 9px 13px; border-radius: 18px 18px 4px 18px;
+  background: var(--ink); color: var(--ink-text); font-size: 14.5px; overflow-wrap: anywhere;
+}
+.msg-ai { display: flex; flex-direction: column; gap: 10px; max-width: 100%; }
+.msg-text { font-size: 14.5px; line-height: 1.6; white-space: pre-wrap; }
+.msg-error { font-size: 13.5px; color: var(--bad); }
+
+.typing { display: flex; gap: 4px; padding: 6px 0; }
+.typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--text-3); animation: pulse 1.2s infinite; }
+.typing i:nth-child(2) { animation-delay: 0.15s; }
+.typing i:nth-child(3) { animation-delay: 0.3s; }
+
+.steps-box { display: flex; flex-direction: column; }
+.steps-summary {
+  align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; padding: 4px 0;
+  border: none; background: none; color: var(--text-3); font: 12.5px var(--font); cursor: pointer;
+}
+.steps-summary:hover { color: var(--text-2); }
+.warn-ico { color: var(--warn); }
+.bad-ico { color: var(--bad); }
+.steps-list {
+  list-style: none; margin: 4px 0 0; padding: 8px 12px; border-left: 2px solid var(--border);
+  display: flex; flex-direction: column; gap: 7px; font-size: 13px;
+}
+.steps-list li { display: flex; align-items: center; gap: 8px; }
+.steps-detail { margin-left: auto; color: var(--text-3); font-size: 12.5px; text-align: right; }
+.steps-detail.bad { color: var(--bad); }
+.steps-detail.warn { color: var(--warn); }
+.steps-notice { align-items: flex-start !important; color: var(--bad); font-size: 12.5px; line-height: 1.5; }
+.steps-notice svg { flex: none; margin-top: 2px; }
+
+.composer-wrap {
+  position: sticky; bottom: 0; padding: 8px 12px calc(12px + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, var(--bg) 70%, transparent);
+}
+.quick { display: flex; gap: 6px; overflow-x: auto; padding: 0 2px 8px; scrollbar-width: none; }
+.quick::-webkit-scrollbar { display: none; }
+.quick button {
+  flex: none; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text-2); font: 12.5px var(--font); cursor: pointer;
+}
+.quick button:hover { color: var(--text); border-color: var(--border-strong); }
+.composer {
+  display: flex; align-items: center; gap: 6px; padding: 5px; border-radius: 26px;
+  background: var(--surface); border: 1px solid var(--border-strong); box-shadow: var(--shadow);
+}
+.composer:focus-within { border-color: var(--text-3); }
+.composer input {
+  flex: 1; min-width: 0; border: none; outline: none; background: transparent;
+  font: 15px var(--font); color: var(--text); padding: 8px 6px;
+}
+.composer .mic, .composer .send {
+  width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; flex: none;
+  border: none; cursor: pointer;
+}
+.composer .mic { background: var(--surface-2); color: var(--text); }
+.composer .send { background: var(--ink); color: var(--ink-text); }
+.composer .send:disabled { opacity: 0.25; cursor: default; }
+.composer.listening { border-color: var(--bad); }
+.composer.listening .mic { background: var(--bad); color: #fff; animation: pulse 1.2s infinite; }
+.composer-err { font-size: 12px; color: var(--bad); padding: 6px 8px 0; }
+
+/* 自用：在聊天里确认超额付款 */
+.wallet-btn { position: relative; }
+.wallet-btn.on::after, .wallet-btn.other::after {
+  content: ""; position: absolute; right: 6px; top: 6px; width: 7px; height: 7px; border-radius: 50%;
+  border: 2px solid var(--bg); background: var(--ok);
+}
+.wallet-btn.other::after { background: var(--warn); }
+.approve-bar { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.approve-row { display: flex; gap: 6px; align-items: center; }
+.approve-err { font-size: 12px; color: var(--bad); text-align: right; max-width: 260px; }
+.msg-note {
+  align-self: center; display: inline-flex; align-items: center; gap: 6px; max-width: 92%;
+  font-size: 12.5px; color: var(--text-2); padding: 6px 12px; border-radius: 999px; background: var(--surface-2);
+}
+.msg-note.ok svg { color: var(--ok); }
+.msg-note svg { flex: none; }
+.bar-right { display: flex; align-items: center; gap: 2px; }
+.lang-btn { width: auto; padding: 0 9px; gap: 4px; font-size: 12px; display: inline-flex; align-items: center; }

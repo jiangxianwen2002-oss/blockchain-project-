@@ -1,0 +1,33 @@
+'forge clean' running (wd: /Users/jason/Desktop/blockchain project/agent-vault)
+'forge config --json' running
+'forge build --build-info --deny never --skip ./test/** ./script/** --force' running (wd: /Users/jason/Desktop/blockchain project/agent-vault)
+INFO:Detectors:
+Detector: timestamp
+AgentShop.onAgentPayment(address,uint256,string) (src/AgentShop.sol#215-239) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp > uint256(o.createdAt) + ORDER_TTL (src/AgentShop.sol#220)
+AgentShop.release(uint256) (src/AgentShop.sol#260-266) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp < at (src/AgentShop.sol#264)
+AgentShop.dispute(uint256) (src/AgentShop.sol#271-279) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp >= closedAt (src/AgentShop.sol#276)
+AgentVault.setAgent(address,uint128,uint128,uint64) (src/AgentVault.sol#63-80) uses timestamp for comparisons
+	Dangerous comparisons:
+	- expiresAt <= block.timestamp (src/AgentVault.sol#71)
+AgentVault.approveRequest(uint256) (src/AgentVault.sol#94-107) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp > uint256(r.createdAt) + REQUEST_TTL (src/AgentVault.sol#97)
+AgentVault.pay(address,uint128,string) (src/AgentVault.sol#128-170) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp >= p.expiresAt (src/AgentVault.sol#137)
+	- p.dayIndex != today (src/AgentVault.sol#142)
+AgentVault.remainingToday(address) (src/AgentVault.sol#183-188) uses timestamp for comparisons
+	Dangerous comparisons:
+	- ! p.active || block.timestamp >= p.expiresAt (src/AgentVault.sol#185)
+	- p.dayIndex != _today() (src/AgentVault.sol#186)
+MockUSDC.faucet() (src/MockUSDC.sol#24-29) uses timestamp for comparisons
+	Dangerous comparisons:
+	- lastClaim[msg.sender] != 0 && block.timestamp < next (src/MockUSDC.sol#26)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#block-timestamp
+INFO:Slither:. analyzed (21 contracts with 102 detectors), 8 result(s) found

@@ -1,0 +1,8 @@
+/* 商家入驻页：沿用控制台的样式，单栏居中 */
+.merchant { min-height: 100dvh; background: var(--bg); }
+.merchant .top h1 { display: inline-flex; align-items: center; gap: 8px; }
+.merchant .page { margin: 0 auto; }
+.merchant h2 { font-size: 15px; margin: 0 0 4px; }
+.menu-rows { display: flex; flex-direction: column; gap: 6px; }
+.menu-row { display: grid; grid-template-columns: minmax(0, 1fr) 120px 90px 32px; gap: 8px; align-items: center; }
+@media (max-width: 560px) { .menu-row { grid-template-columns: minmax(0, 1fr) 84px 64px 28px; } }
