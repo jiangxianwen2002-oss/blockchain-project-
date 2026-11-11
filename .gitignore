@@ -1,0 +1,15 @@
+out/
+cache/
+broadcast/*/31337/
+.env
+node_modules/
+dist/
+.DS_Store
+agent/settings.local.json
+agent/shop-orders.local.json
+agent/*.local.json
+
+# Foundry 部署日志：只保留每个脚本最终的 run-latest.json，其余是 dry-run 和带时间戳的重复副本
+broadcast/**/dry-run/
+broadcast/**/run-[0-9]*.json
+broadcast/**/*.lock
